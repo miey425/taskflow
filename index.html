@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f6f2">
+  <title>TaskFlow｜今日のタスク</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="TaskFlow ホーム">
+        <span class="brand-mark" aria-hidden="true">✓</span>
+        <span>taskflow</span>
+      </a>
+      <span class="topbar-note"><span class="status-dot"></span> あなたのペースで</span>
+    </header>
+
+    <section class="welcome" aria-labelledby="page-title">
+      <p class="eyebrow" id="today-label">今日のタスク</p>
+      <h1 id="page-title">やることを、<span>ひとつずつ。</span></h1>
+      <p class="welcome-copy">小さな一歩を重ねて、今日を気持ちよく進めましょう。</p>
+    </section>
+
+    <section class="task-card" aria-label="タスクリスト">
+      <form id="task-form" class="task-form">
+        <label class="visually-hidden" for="task-input">新しいタスク</label>
+        <span class="input-icon" aria-hidden="true">＋</span>
+        <input id="task-input" name="task" type="text" maxlength="120" placeholder="新しいタスクを入力..." autocomplete="off" required>
+        <button class="add-button" type="submit"><span aria-hidden="true">＋</span> 追加する</button>
+      </form>
+
+      <div class="list-heading">
+        <h2>マイタスク</h2>
+        <span id="task-count" class="task-count">0 件</span>
+      </div>
+
+      <ul id="task-list" class="task-list" aria-live="polite" aria-relevant="additions removals text"></ul>
+
+      <div id="empty-state" class="empty-state">
+        <span class="empty-icon" aria-hidden="true">✳</span>
+        <p class="empty-title">タスクはまだありません</p>
+        <p class="empty-copy">上の入力欄から、今日やることを追加しましょう。</p>
+      </div>
+
+      <footer class="card-footer">
+        <span><span class="footer-sparkle" aria-hidden="true">✦</span> 一歩ずつで大丈夫。</span>
+        <span id="remaining-count">残り 0 件</span>
+      </footer>
+    </section>
+
+    <p class="page-footer">今日の自分に、ちいさな「できた」を。</p>
+  </main>
+</body>
+</html>
