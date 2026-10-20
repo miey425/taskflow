@@ -69,15 +69,29 @@ function createId() {
 function loadTasks() {
   try {
     const savedTasks = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-    return Array.isArray(savedTasks) ? savedTasks : [];
+    // 必要な項目がそろっているデータだけを使います。
+    return Array.isArray(savedTasks)
+      ? savedTasks.filter(
+          (task) =>
+            task &&
+            typeof task.id === "string" &&
+            typeof task.title === "string" &&
+            typeof task.completed === "boolean",
+        )
+      : [];
   } catch {
-    // 保存データが壊れていても、アプリ自体は空の状態で起動できます。
+    // 保存データが壊れている、または読み込めない場合は空の状態で起動します。
     return [];
   }
 }
 
 function saveAndRender() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+  try {
+    // localStorageには文字列しか入れられないため、配列をJSON文字列に変換します。
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+  } catch {
+    // 保存が利用できない環境でも、画面上の操作は続けられるようにします。
+  }
   renderTasks();
 }
 
